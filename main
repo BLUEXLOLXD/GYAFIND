@@ -1,0 +1,80 @@
+local gyukusatsudetector = game.workspace.NPCSpawns.GyakusatsuSpawn:FindFirstChild("Gyakusatsu")
+local localplayer = game.Players.LocalPlayer
+local destinationflbl = CFrame.new(-998.727, 64.7173, 339.988) * CFrame.Angles(0, math.rad(-90), 0)
+local destinationfrbr = CFrame.new(-998.727, 64.7173, 204.988) * CFrame.Angles(0, math.rad(-90), 0)
+local destinationmid = CFrame.new(-998.727, 64.7173, 270.988) * CFrame.Angles(0, math.rad(-90), 0)
+local args = "\230\147\141\228\189\160\240\159\146\166\240\159\146\148\240\159\141\145\240\159\145\140\240\159\146\166\230\147\141\228\189\160\240\159\146\166\240\159\146\148\240\159\141\145\240\159\145\140\240\159\146\166\240\159\146\148\240\159\141\145\240\159\145\140\240\159\146\166\240\159\146\148\240\159\141\145\240\159\145\140\240\159\146\148\240\159\141\145\240\159\145\140\240\159\146\166\240\159\146\148\240\159\141\145\240\159\145\140"
+local arata = "Zero"
+local skill = "F"
+local weaponStage = "One"
+local side = "CCG"
+local character = localplayer.Character or player.CharacterAdded:Wait()
+local midhumanoid = game.Workspace.NPCSpawns.GyakusatsuSpawn.Gyakusatsu:FindFirstChild("Statue")
+local flhumanoid = game.Workspace.NPCSpawns.GyakusatsuSpawn.FL:FindFirstChild("Humanoid")
+local blhumanoid = game.Workspace.NPCSpawns.GyakusatsuSpawn.BL:FindFirstChild("Humanoid")
+local frhumanoid = game.Workspace.NPCSpawns.GyakusatsuSpawn.FR:FindFirstChild("Humanoid")
+local brhumanoid = game.Workspace.NPCSpawns.GyakusatsuSpawn.BR:FindFirstChild("Humanoid")
+local midhealth, flhealth, blhealth, frhealth, brhealth = midhumanoid and midhumanoid.Health, flhumanoid and flhumanoid.Health, blhumanoid and blhumanoid.Health, frhumanoid and frhumanoid.Health, brhumanoid and brhumanoid.Health
+
+if gyukusatsudetector then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/BLUEXLOLXD/GyaWebhook/BLUEXLOLXD-patch-1/Webhook"))()
+  wait(1)   
+   game:GetService("ReplicatedStorage").Remotes.Race.Chose:InvokeServer(side)
+    local quinquefind = localplayer.Character:FindFirstChild("Quinque")
+    local aratafind = localplayer.Character:FindFirstChild("Arata")
+     if not quinquefind then
+        game.Players.LocalPlayer.Character.Remotes.KeyEvent:FireServer(args, weaponStage, "Down", CFrame.new(), CFrame.new())
+     else
+        print("Quinque is Opening")
+      if not aratfind then
+         wait(1)
+         game.Players.LocalPlayer.Character.Remotes.KeyEvent:FireServer(args, arata, "Down", CFrame.new(), CFrame.new())
+         wait(3)
+         game.Players.LocalPlayer.Character.Remotes.KeyEvent:FireServer(args, skill, "Down", CFrame.new(), CFrame.new())
+      else   
+         print("Arata is Opening")
+      end
+     end   
+   ---- tween to attack fl and bl ----
+     local TweenService = game:GetService("TweenService")
+     local TweenSpeed = 150
+     if flhealth and blhealth then
+      function toTargetWait(a)local b=(a.p-game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude;tweenrach=game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"),TweenInfo.new(b/TweenSpeed,Enum.EasingStyle.Linear),
+         {CFrame=a})tweenrach:Play()end;toTargetWait(destinationflbl)
+   ---- tween to attack fr and br ----      
+      while true do
+        if flhealth and blhealth < 0 then
+           function toTargetWait(a)local b=(a.p-game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude;tweenrach=game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"),TweenInfo.new(b/TweenSpeed,Enum.EasingStyle.Linear),
+              {CFrame=a})tweenrach:Play()end;toTargetWait(destinationfrbr)
+          break 
+         end
+        wait(1)
+       end
+    end
+    if frhealth and brhealth then
+   ---- tween to attack mid ----      
+      while true do
+        if frhealth and brhealth < 0 then
+           function toTargetWait(a)local b=(a.p-game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude;tweenrach=game:GetService('TweenService'):Create(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"),TweenInfo.new(b/TweenSpeed,Enum.EasingStyle.Linear),
+              {CFrame=a})tweenrach:Play()end;toTargetWait(destinationmid)
+          break 
+         end
+        wait(1)
+       end
+    end
+    if midhealth then
+      ---- tween to attack  ----      
+         while true do
+           if midhealth < 0 then
+              gyafind()
+             break 
+            end
+           wait(1)
+          end
+      end
+ else
+   local function gyafind()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BLUEXLOLXD/Hopiing/BLUEXLOLXD-patch-1/Small"))()
+   end
+   gyafind()
+ end
